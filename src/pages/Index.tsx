@@ -1,11 +1,258 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { PlayerHeader } from "@/components/PlayerHeader";
+import { LinkCard } from "@/components/LinkCard";
+import { SectionHeader } from "@/components/SectionHeader";
+import { StatsCard } from "@/components/StatsCard";
+import { PlayerJourney } from "@/components/PlayerJourney";
+import { UpcomingGames } from "@/components/UpcomingGames";
+import { VideoShowcase } from "@/components/VideoShowcase";
+import { Partnerships } from "@/components/Partnerships";
+import { Representation } from "@/components/Representation";
+import { 
+  Instagram, 
+  Twitter, 
+  Youtube, 
+  Music2,
+  UserCircle,
+  BarChart3,
+  Trophy,
+  Calendar,
+  Video,
+  Handshake,
+  Users,
+  MapPin
+} from "lucide-react";
+import { toast } from "@/hooks/use-toast";
+
+// Mock data for the example player
+const playerData = {
+  name: "Marcus Lindström",
+  number: "17",
+  position: "Center",
+  team: "London Knights",
+  league: "OHL",
+  nationality: "Canada",
+  age: 18,
+  height: "6'1\"",
+  weight: "185 lbs",
+};
+
+const currentStats = {
+  gamesPlayed: 42,
+  goals: 28,
+  assists: 35,
+  points: 63,
+  plusMinus: "+24",
+  pim: 18,
+};
+
+const journey = [
+  { year: "2024-25", team: "London Knights", league: "OHL", role: "Alternate Captain" },
+  { year: "2023-24", team: "London Knights", league: "OHL" },
+  { year: "2022-23", team: "Elgin-Middlesex Chiefs", league: "ALLIANCE U18" },
+  { year: "2021-22", team: "Toronto Jr. Canadiens", league: "GTHL U16" },
+];
+
+const upcomingGames = [
+  { 
+    date: "Feb 7", 
+    time: "7:00 PM", 
+    opponent: "Oshawa Generals", 
+    location: "Budweiser Gardens", 
+    isHome: true 
+  },
+  { 
+    date: "Feb 9", 
+    time: "2:00 PM", 
+    opponent: "Erie Otters", 
+    location: "Erie Insurance Arena", 
+    isHome: false 
+  },
+  { 
+    date: "Feb 14", 
+    time: "7:30 PM", 
+    opponent: "Windsor Spitfires", 
+    location: "Budweiser Gardens", 
+    isHome: true 
+  },
+];
+
+const videos = [
+  {
+    id: "1",
+    title: "Hat Trick vs Kitchener Rangers - All Goals",
+    thumbnail: "https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?w=200&h=150&fit=crop",
+    duration: "2:34",
+    url: "https://youtube.com",
+  },
+  {
+    id: "2",
+    title: "Top 10 Plays of the Season So Far",
+    thumbnail: "https://images.unsplash.com/photo-1515703407324-5f753afd8be8?w=200&h=150&fit=crop",
+    duration: "4:12",
+    url: "https://youtube.com",
+  },
+];
+
+const partners = [
+  { 
+    id: "1", 
+    name: "Bauer Hockey", 
+    logo: "", 
+    url: "https://bauer.com", 
+    promoCode: "MARCUS17", 
+    discount: "15% OFF" 
+  },
+  { 
+    id: "2", 
+    name: "CCM", 
+    logo: "", 
+    url: "https://ccmhockey.com", 
+    promoCode: "ML17", 
+    discount: "10% OFF" 
+  },
+  { 
+    id: "3", 
+    name: "Gatorade", 
+    logo: "", 
+    url: "https://gatorade.com" 
+  },
+  { 
+    id: "4", 
+    name: "Elite Training", 
+    logo: "", 
+    url: "https://example.com", 
+    discount: "Free Trial" 
+  },
+];
+
+const agent = {
+  name: "Michael Thompson",
+  agency: "Elite Hockey Management",
+  email: "mthompson@elitehockey.com",
+};
 
 const Index = () => {
+  const handleAffiliateClick = (partnerId: string, partnerName: string) => {
+    console.log(`Affiliate click tracked: ${partnerName} (${partnerId})`);
+    // In production, this would send to analytics/backend
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="min-h-screen pb-12">
+      <div className="container max-w-lg mx-auto px-4">
+        {/* Player Header */}
+        <PlayerHeader {...playerData} />
+
+        {/* Social Media Links */}
+        <section className="mt-8 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+          <SectionHeader title="Social" icon={<Users className="w-4 h-4" />} />
+          <div className="space-y-3">
+            <LinkCard
+              href="https://instagram.com"
+              icon={<Instagram className="w-5 h-5" />}
+              label="Instagram"
+              subtitle="@marcuslindstrom17"
+            />
+            <LinkCard
+              href="https://twitter.com"
+              icon={<Twitter className="w-5 h-5" />}
+              label="X (Twitter)"
+              subtitle="@mlindstrom17"
+            />
+            <LinkCard
+              href="https://youtube.com"
+              icon={<Youtube className="w-5 h-5" />}
+              label="YouTube"
+              subtitle="Marcus Lindström Hockey"
+            />
+            <LinkCard
+              href="https://tiktok.com"
+              icon={<Music2 className="w-5 h-5" />}
+              label="TikTok"
+              subtitle="@marcus.lindstrom"
+            />
+          </div>
+        </section>
+
+        {/* Hockey Profiles */}
+        <section className="mt-10 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          <SectionHeader title="Hockey Profiles" icon={<UserCircle className="w-4 h-4" />} />
+          <div className="space-y-3">
+            <LinkCard
+              href="https://eliteprospects.com"
+              icon={<span className="text-sm font-bold">EP</span>}
+              label="Elite Prospects"
+              subtitle="Full career stats & scouting"
+            />
+            <LinkCard
+              href="https://instantscout.com"
+              icon={<span className="text-sm font-bold">IS</span>}
+              label="Instant Scout"
+              subtitle="Video & analytics"
+            />
+            <LinkCard
+              href="https://rinknet.com"
+              icon={<span className="text-sm font-bold">RN</span>}
+              label="Rink Net"
+              subtitle="Scout reports"
+            />
+            <LinkCard
+              href="https://graet.com"
+              icon={<span className="text-sm font-bold">G</span>}
+              label="GRAET"
+              subtitle="Performance tracking"
+            />
+          </div>
+        </section>
+
+        {/* Season Stats */}
+        <section className="mt-10 animate-fade-in" style={{ animationDelay: "0.3s" }}>
+          <SectionHeader title="Season Stats" icon={<BarChart3 className="w-4 h-4" />} />
+          <StatsCard stats={currentStats} season="2024-25 OHL" />
+        </section>
+
+        {/* Upcoming Games */}
+        <section className="mt-10 animate-fade-in" style={{ animationDelay: "0.4s" }}>
+          <SectionHeader title="Upcoming Games" icon={<Calendar className="w-4 h-4" />} />
+          <UpcomingGames games={upcomingGames} />
+        </section>
+
+        {/* Video Highlights */}
+        <section className="mt-10 animate-fade-in" style={{ animationDelay: "0.5s" }}>
+          <SectionHeader title="Highlights" icon={<Video className="w-4 h-4" />} />
+          <VideoShowcase videos={videos} />
+        </section>
+
+        {/* Playing Journey */}
+        <section className="mt-10 animate-fade-in" style={{ animationDelay: "0.6s" }}>
+          <SectionHeader title="My Journey" icon={<MapPin className="w-4 h-4" />} />
+          <div className="glass rounded-xl p-4 border border-border/50">
+            <PlayerJourney journey={journey} />
+          </div>
+        </section>
+
+        {/* Representation */}
+        <section className="mt-10 animate-fade-in" style={{ animationDelay: "0.7s" }}>
+          <SectionHeader title="Representation" icon={<Trophy className="w-4 h-4" />} />
+          <Representation agent={agent} />
+        </section>
+
+        {/* Partnerships */}
+        <section className="mt-10 animate-fade-in" style={{ animationDelay: "0.8s" }}>
+          <SectionHeader title="Partners" icon={<Handshake className="w-4 h-4" />} />
+          <Partnerships partners={partners} onAffiliateClick={handleAffiliateClick} />
+        </section>
+
+        {/* Footer */}
+        <footer className="mt-12 pt-8 border-t border-border text-center">
+          <p className="text-sm text-muted-foreground">
+            Built with{" "}
+            <span className="text-primary font-semibold">PlayerLink</span>
+          </p>
+          <p className="text-xs text-muted-foreground/60 mt-1">
+            © 2025 Marcus Lindström. All rights reserved.
+          </p>
+        </footer>
       </div>
     </div>
   );
