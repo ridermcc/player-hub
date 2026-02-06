@@ -63,8 +63,8 @@ export default {
         },
         ice: {
           DEFAULT: "hsl(var(--ice-glow))",
-          glow: "hsl(195 100% 60%)",
-          light: "hsl(195 100% 70%)",
+          glow: "hsl(215 70% 40%)",
+          light: "hsl(215 50% 60%)",
         },
       },
       borderRadius: {

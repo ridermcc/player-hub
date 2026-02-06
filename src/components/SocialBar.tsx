@@ -49,7 +49,7 @@ export const SocialBar = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={link.label}
-          className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-110 hover:shadow-[0_0_16px_hsla(195,100%,50%,0.4)]"
+          className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-110 hover:shadow-md"
         >
           {link.icon}
         </a>
