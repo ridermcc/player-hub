@@ -19,6 +19,14 @@ interface PartnershipsProps {
 export const Partnerships = ({ partners, onAffiliateClick }: PartnershipsProps) => {
   const [clickCounts, setClickCounts] = useState<Record<string, number>>({});
 
+  if (!partners || partners.length === 0) {
+    return (
+      <div className="bg-card rounded-2xl border border-border shadow-sm p-6 text-center text-muted-foreground text-sm">
+        No partners added yet
+      </div>
+    );
+  }
+
   const handleClick = (partner: Partner) => {
     setClickCounts(prev => ({
       ...prev,

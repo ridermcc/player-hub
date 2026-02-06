@@ -1,37 +1,39 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
 import { useAuth } from '@/context/MockAuthContext';
 import { ProfileRenderer } from '@/components/ProfileRenderer';
 
 const LandingPage = () => {
-    const { getProfile } = useAuth();
-    const riderProfile = getProfile('ridermccallum');
+  const { getProfile } = useAuth();
+  const riderProfile = getProfile('ridermccallum');
 
-    if (!riderProfile) {
-        return <div>Loading...</div>;
-    }
+  if (!riderProfile) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
 
-    return (
-        <div className="min-h-screen bg-background pb-24">
-            <div className="max-w-md mx-auto min-h-screen border-x-0 md:border-x bg-background relative z-0">
-                <ProfileRenderer profile={riderProfile} editable={false} />
-            </div>
+  return (
+    <div className="min-h-screen bg-background pb-20">
+      <div className="max-w-md mx-auto min-h-screen bg-background relative z-0">
+        <ProfileRenderer profile={riderProfile} editable={false} />
+      </div>
 
-            {/* Sticky Signup Footer */}
-            <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/95 backdrop-blur border-t z-50">
-                <div className="max-w-md mx-auto flex flex-col gap-2">
-                    <p className="text-center text-sm font-medium">Want a profile like this?</p>
-                    <Link to="/signup" className="w-full">
-                        <Button size="lg" className="w-full text-lg font-bold shadow-xl animate-pulse bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 border-0">
-                            Build your own MyHockeyBio
-                        </Button>
-                    </Link>
-                </div>
-            </div>
+      {/* Subtle footer CTA */}
+      <div className="fixed bottom-0 left-0 right-0 bg-background/90 backdrop-blur-md border-t border-border z-50">
+        <div className="max-w-md mx-auto flex items-center justify-between px-4 py-3">
+          <p className="text-sm text-muted-foreground">
+            Built with <span className="font-bold text-primary">MyHockeyBio</span>
+          </p>
+          <Link
+            to="/signup"
+            className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
+          >
+            Create yours →
+          </Link>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default LandingPage;
