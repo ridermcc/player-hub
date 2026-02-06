@@ -1,5 +1,5 @@
 import { PlayerHeader } from "@/components/PlayerHeader";
-import { LinkCard } from "@/components/LinkCard";
+import { SocialBar } from "@/components/SocialBar";
 import { SectionHeader } from "@/components/SectionHeader";
 import { StatsCard } from "@/components/StatsCard";
 import { PlayerJourney } from "@/components/PlayerJourney";
@@ -8,17 +8,11 @@ import { VideoShowcase } from "@/components/VideoShowcase";
 import { Partnerships } from "@/components/Partnerships";
 import { Representation } from "@/components/Representation";
 import { 
-  Instagram, 
-  Twitter, 
-  Youtube, 
-  Music2,
-  UserCircle,
   BarChart3,
   Trophy,
   Calendar,
   Video,
   Handshake,
-  Users,
   MapPin
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
@@ -143,66 +137,9 @@ const Index = () => {
         {/* Player Header */}
         <PlayerHeader {...playerData} />
 
-        {/* Social Media Links */}
-        <section className="mt-8 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-          <SectionHeader title="Social" icon={<Users className="w-4 h-4" />} />
-          <div className="space-y-3">
-            <LinkCard
-              href="https://instagram.com"
-              icon={<Instagram className="w-5 h-5" />}
-              label="Instagram"
-              subtitle="@marcuslindstrom17"
-            />
-            <LinkCard
-              href="https://twitter.com"
-              icon={<Twitter className="w-5 h-5" />}
-              label="X (Twitter)"
-              subtitle="@mlindstrom17"
-            />
-            <LinkCard
-              href="https://youtube.com"
-              icon={<Youtube className="w-5 h-5" />}
-              label="YouTube"
-              subtitle="Marcus Lindström Hockey"
-            />
-            <LinkCard
-              href="https://tiktok.com"
-              icon={<Music2 className="w-5 h-5" />}
-              label="TikTok"
-              subtitle="@marcus.lindstrom"
-            />
-          </div>
-        </section>
-
-        {/* Hockey Profiles */}
-        <section className="mt-10 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-          <SectionHeader title="Hockey Profiles" icon={<UserCircle className="w-4 h-4" />} />
-          <div className="space-y-3">
-            <LinkCard
-              href="https://eliteprospects.com"
-              icon={<span className="text-sm font-bold">EP</span>}
-              label="Elite Prospects"
-              subtitle="Full career stats & scouting"
-            />
-            <LinkCard
-              href="https://instantscout.com"
-              icon={<span className="text-sm font-bold">IS</span>}
-              label="Instant Scout"
-              subtitle="Video & analytics"
-            />
-            <LinkCard
-              href="https://rinknet.com"
-              icon={<span className="text-sm font-bold">RN</span>}
-              label="Rink Net"
-              subtitle="Scout reports"
-            />
-            <LinkCard
-              href="https://graet.com"
-              icon={<span className="text-sm font-bold">G</span>}
-              label="GRAET"
-              subtitle="Performance tracking"
-            />
-          </div>
+        {/* Social & Hockey Profiles */}
+        <section className="mt-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+          <SocialBar />
         </section>
 
         {/* Season Stats */}
