@@ -33,9 +33,9 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-background p-4">
-      <div className="mb-8 text-center">
-        <h1 className="text-2xl font-extrabold text-foreground tracking-tight">MyHockeyBio</h1>
+    <div className="min-h-screen flex flex-col items-center pt-20 md:pt-0 md:justify-center bg-background p-4">
+      <div className="mb-8 text-center flex flex-col items-center">
+        <img src="https://myhockeybio.com/wp-content/uploads/2025/03/MHB-Logo-white.png" alt="MyHockeyBio" className="h-8 mb-2" />
         <p className="text-sm text-muted-foreground mt-1">Your hockey link-in-bio</p>
       </div>
 

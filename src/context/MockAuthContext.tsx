@@ -30,7 +30,7 @@ export interface UserProfile {
   username: string;
   displayName: string;
   bio: string;
-  avatarUrl?: string;
+  avatar?: string;
   position?: string;
   team?: string;
   league?: string;
@@ -74,7 +74,7 @@ const SEED_PROFILE: UserProfile = {
   username: 'ridermccallum',
   displayName: 'Rider McCallum',
   bio: 'Professional Hockey Player',
-  avatarUrl: '/player-hub/player-photo.jpg',
+  avatar: '/player-hub/player-photo.jpg',
   position: 'D',
   team: 'Plymouth State Univ.',
   league: 'NCAA III',

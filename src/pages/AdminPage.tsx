@@ -37,13 +37,13 @@ const AdminPage = () => {
       {/* Top Bar */}
       <div className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="max-w-lg mx-auto flex h-12 items-center justify-between px-4">
-          <span className="font-extrabold text-sm tracking-tight text-primary">MyHockeyBio</span>
+          <img src="https://myhockeybio.com/wp-content/uploads/2025/03/MHB-Logo-white.png" alt="MyHockeyBio" className="h-6" />
           <div className="flex gap-2">
             <Button
               variant="ghost"
               size="sm"
               className="h-8 text-xs"
-              onClick={() => window.open(`/${currentUserProfile.username}`, '_blank')}
+              onClick={() => window.open(`${import.meta.env.BASE_URL}${currentUserProfile.username}`, '_blank')}
             >
               <Eye className="mr-1.5 w-3.5 h-3.5" /> Preview
             </Button>
@@ -59,14 +59,14 @@ const AdminPage = () => {
         </div>
       </div>
 
-      {/* Phone frame */}
-      <div className="flex justify-center py-6 px-4">
-        <div className="w-full max-w-[430px] bg-background border border-border rounded-[2rem] shadow-2xl overflow-hidden relative">
-          {/* Notch */}
-          <div className="h-5 bg-secondary/40 flex justify-center items-center">
+      {/* Phone frame - Full width on mobile, Phone mock on desktop */}
+      <div className="flex justify-center h-[calc(100vh-48px)] md:py-6 md:px-4 md:h-auto">
+        <div className="w-full h-full md:h-auto md:max-w-[430px] bg-background md:border md:border-border md:rounded-[2rem] md:shadow-2xl overflow-hidden relative flex flex-col">
+          {/* Notch - hidden on mobile */}
+          <div className="hidden md:flex h-5 bg-secondary/40 justify-center items-center shrink-0">
             <div className="w-16 h-1 rounded-full bg-border/50" />
           </div>
-          <div className="overflow-y-auto max-h-[calc(100vh-120px)] custom-scrollbar">
+          <div className="flex-1 overflow-y-auto custom-scrollbar md:max-h-[calc(100vh-120px)]">
             <ProfileRenderer
               profile={currentUserProfile}
               editable={true}

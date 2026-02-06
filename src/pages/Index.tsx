@@ -168,10 +168,9 @@ const Index = () => {
 
           {/* Footer */}
           <footer className="pt-6 border-t border-border text-center pb-4">
-            <p className="text-xs text-muted-foreground">
-              Built with{" "}
-              <span className="text-primary font-bold">MyHockeyBio</span>
-            </p>
+            <div className="flex justify-center items-center gap-1 text-xs text-muted-foreground">
+              Built with <img src="https://myhockeybio.com/wp-content/uploads/2025/03/MHB-Logo-white.png" alt="MyHockeyBio" className="h-3 inline" />
+            </div>
             <p className="text-[10px] text-muted-foreground/50 mt-1">
               © 2025 Rider McCallum
             </p>

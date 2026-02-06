@@ -156,6 +156,9 @@ export const ProfileRenderer = ({
         shoots={profile.shoots || ''}
         flag={profile.flag}
         dob={profile.dob || ''}
+        playerImage={profile.avatar}
+        editable={editable}
+        onUpdate={(updates) => onUpdateProfile && onUpdateProfile(updates)}
       />
 
       <div className="px-4 space-y-8 mt-6">
