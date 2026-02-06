@@ -28,7 +28,7 @@ export const PlayerHeader = ({
   return (
     <header className="relative flex flex-col items-center">
       {/* Hero image — full width, tall */}
-      <div className="relative w-full aspect-[4/5] max-h-[480px] rounded-b-3xl overflow-hidden">
+      <div className="relative w-full aspect-[3/4] max-h-[420px] rounded-b-3xl overflow-hidden">
         <img
           src={playerPhoto}
           alt={name}
@@ -44,11 +44,11 @@ export const PlayerHeader = ({
               <h1 className="text-3xl font-extrabold tracking-tight text-foreground leading-tight">
                 {name}
               </h1>
-              <p className="text-base font-medium text-muted-foreground mt-0.5">
+              <p className="text-base font-semibold text-foreground/70 mt-0.5">
                 {position}
               </p>
             </div>
-            <span className="text-5xl font-black text-primary/20 leading-none">
+            <span className="text-5xl font-black text-foreground/30 leading-none">
               {number}
             </span>
           </div>
