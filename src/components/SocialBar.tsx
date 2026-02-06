@@ -9,39 +9,39 @@ interface SocialLink {
 const socialLinks: SocialLink[] = [
   {
     href: "https://eliteprospects.com",
-    icon: <span className="text-[11px] font-extrabold leading-none">EP</span>,
+    icon: <span className="text-xs font-extrabold leading-none">EP</span>,
     label: "Elite Prospects",
   },
   {
     href: "https://instatscout.com",
-    icon: <span className="text-[11px] font-extrabold leading-none">IN</span>,
+    icon: <span className="text-xs font-extrabold leading-none">IN</span>,
     label: "InStat",
   },
   {
     href: "https://graet.com",
-    icon: <span className="text-[11px] font-extrabold leading-none">G</span>,
+    icon: <span className="text-xs font-extrabold leading-none">G</span>,
     label: "GRAET",
   },
   {
     href: "https://youtube.com",
-    icon: <Youtube className="w-[18px] h-[18px]" />,
+    icon: <Youtube className="w-4 h-4" />,
     label: "YouTube",
   },
   {
     href: "https://instagram.com",
-    icon: <Instagram className="w-[18px] h-[18px]" />,
+    icon: <Instagram className="w-4 h-4" />,
     label: "Instagram",
   },
   {
     href: "https://tiktok.com",
-    icon: <Music2 className="w-[18px] h-[18px]" />,
+    icon: <Music2 className="w-4 h-4" />,
     label: "TikTok",
   },
 ];
 
 export const SocialBar = () => {
   return (
-    <div className="flex items-center justify-center gap-3">
+    <div className="grid grid-cols-6 gap-2">
       {socialLinks.map((link) => (
         <a
           key={link.label}
@@ -49,9 +49,14 @@ export const SocialBar = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={link.label}
-          className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-110 hover:shadow-md"
+          className="group flex flex-col items-center gap-1.5 py-3 rounded-xl bg-card border border-border shadow-sm hover:border-primary/30 hover:shadow-md transition-all duration-200"
         >
-          {link.icon}
+          <div className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-secondary-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-200">
+            {link.icon}
+          </div>
+          <span className="text-[10px] font-medium text-muted-foreground group-hover:text-primary transition-colors leading-tight text-center">
+            {link.label}
+          </span>
         </a>
       ))}
     </div>

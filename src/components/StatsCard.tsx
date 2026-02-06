@@ -1,5 +1,3 @@
-import { TrendingUp, Target, Award, Clock } from "lucide-react";
-
 interface StatsCardProps {
   stats: {
     gamesPlayed: number;
@@ -14,27 +12,27 @@ interface StatsCardProps {
 
 export const StatsCard = ({ stats, season }: StatsCardProps) => {
   const statItems = [
-    { label: "GP", value: stats.gamesPlayed, icon: Clock },
-    { label: "G", value: stats.goals, icon: Target },
-    { label: "A", value: stats.assists, icon: TrendingUp },
-    { label: "PTS", value: stats.points, icon: Award },
-    { label: "+/-", value: stats.plusMinus, icon: null },
-    { label: "PIM", value: stats.pim, icon: null },
+    { label: "GP", value: stats.gamesPlayed },
+    { label: "G", value: stats.goals },
+    { label: "A", value: stats.assists },
+    { label: "PTS", value: stats.points },
+    { label: "+/-", value: stats.plusMinus },
+    { label: "PIM", value: stats.pim },
   ];
 
   return (
-    <div className="glass rounded-xl p-4 border border-border/50">
-      <div className="flex items-center justify-between mb-4">
-        <span className="text-sm font-medium text-muted-foreground">{season}</span>
-        <span className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary font-medium">
+    <div className="bg-card rounded-2xl border border-border shadow-sm overflow-hidden">
+      <div className="flex items-center justify-between px-5 py-3 border-b border-border">
+        <span className="text-sm font-semibold text-foreground">{season}</span>
+        <span className="text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-full bg-primary/10 text-primary">
           Current Season
         </span>
       </div>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-6 divide-x divide-border">
         {statItems.map((stat) => (
-          <div key={stat.label} className="text-center">
-            <p className="text-2xl font-bold text-foreground">{stat.value}</p>
-            <p className="text-xs text-muted-foreground uppercase tracking-wide">{stat.label}</p>
+          <div key={stat.label} className="py-4 text-center">
+            <p className="text-xl font-extrabold text-foreground">{stat.value}</p>
+            <p className="text-[10px] text-muted-foreground uppercase tracking-wider mt-1">{stat.label}</p>
           </div>
         ))}
       </div>
