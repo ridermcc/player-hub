@@ -15,7 +15,6 @@ import {
   Handshake,
   MapPin
 } from "lucide-react";
-import { toast } from "@/hooks/use-toast";
 
 // Mock data for the example player
 const playerData = {
@@ -47,27 +46,9 @@ const journey = [
 ];
 
 const upcomingGames = [
-  { 
-    date: "Feb 7", 
-    time: "7:00 PM", 
-    opponent: "Oshawa Generals", 
-    location: "Budweiser Gardens", 
-    isHome: true 
-  },
-  { 
-    date: "Feb 9", 
-    time: "2:00 PM", 
-    opponent: "Erie Otters", 
-    location: "Erie Insurance Arena", 
-    isHome: false 
-  },
-  { 
-    date: "Feb 14", 
-    time: "7:30 PM", 
-    opponent: "Windsor Spitfires", 
-    location: "Budweiser Gardens", 
-    isHome: true 
-  },
+  { date: "Feb 7", time: "7:00 PM", opponent: "Oshawa Generals", location: "Budweiser Gardens", isHome: true },
+  { date: "Feb 9", time: "2:00 PM", opponent: "Erie Otters", location: "Erie Insurance Arena", isHome: false },
+  { date: "Feb 14", time: "7:30 PM", opponent: "Windsor Spitfires", location: "Budweiser Gardens", isHome: true },
 ];
 
 const videos = [
@@ -88,35 +69,10 @@ const videos = [
 ];
 
 const partners = [
-  { 
-    id: "1", 
-    name: "Bauer Hockey", 
-    logo: "", 
-    url: "https://bauer.com", 
-    promoCode: "MARCUS17", 
-    discount: "15% OFF" 
-  },
-  { 
-    id: "2", 
-    name: "CCM", 
-    logo: "", 
-    url: "https://ccmhockey.com", 
-    promoCode: "ML17", 
-    discount: "10% OFF" 
-  },
-  { 
-    id: "3", 
-    name: "Gatorade", 
-    logo: "", 
-    url: "https://gatorade.com" 
-  },
-  { 
-    id: "4", 
-    name: "Elite Training", 
-    logo: "", 
-    url: "https://example.com", 
-    discount: "Free Trial" 
-  },
+  { id: "1", name: "Bauer Hockey", logo: "", url: "https://bauer.com", promoCode: "MARCUS17", discount: "15% OFF" },
+  { id: "2", name: "CCM", logo: "", url: "https://ccmhockey.com", promoCode: "ML17", discount: "10% OFF" },
+  { id: "3", name: "Gatorade", logo: "", url: "https://gatorade.com" },
+  { id: "4", name: "Elite Training", logo: "", url: "https://example.com", discount: "Free Trial" },
 ];
 
 const agent = {
@@ -128,68 +84,69 @@ const agent = {
 const Index = () => {
   const handleAffiliateClick = (partnerId: string, partnerName: string) => {
     console.log(`Affiliate click tracked: ${partnerName} (${partnerId})`);
-    // In production, this would send to analytics/backend
   };
 
   return (
-    <div className="min-h-screen pb-12">
-      <div className="container max-w-lg mx-auto px-4">
-        {/* Player Header */}
+    <div className="min-h-screen pb-16">
+      <div className="max-w-md mx-auto">
+        {/* Player Header — full bleed image */}
         <PlayerHeader {...playerData} />
 
-        {/* Social & Hockey Profiles */}
-        <section className="mt-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-          <SocialBar />
-        </section>
+        {/* Content sections with consistent padding */}
+        <div className="px-4 space-y-8 mt-6">
+          {/* Social & Hockey Profiles */}
+          <section>
+            <SectionHeader title="Connect" />
+            <SocialBar />
+          </section>
 
-        {/* Season Stats */}
-        <section className="mt-10 animate-fade-in" style={{ animationDelay: "0.3s" }}>
-          <SectionHeader title="Season Stats" icon={<BarChart3 className="w-4 h-4" />} />
-          <StatsCard stats={currentStats} season="2024-25 OHL" />
-        </section>
+          {/* Season Stats */}
+          <section>
+            <SectionHeader title="Season Stats" icon={<BarChart3 className="w-3.5 h-3.5" />} />
+            <StatsCard stats={currentStats} season="2024-25 OHL" />
+          </section>
 
-        {/* Upcoming Games */}
-        <section className="mt-10 animate-fade-in" style={{ animationDelay: "0.4s" }}>
-          <SectionHeader title="Upcoming Games" icon={<Calendar className="w-4 h-4" />} />
-          <UpcomingGames games={upcomingGames} />
-        </section>
+          {/* Upcoming Games */}
+          <section>
+            <SectionHeader title="Upcoming Games" icon={<Calendar className="w-3.5 h-3.5" />} />
+            <UpcomingGames games={upcomingGames} />
+          </section>
 
-        {/* Video Highlights */}
-        <section className="mt-10 animate-fade-in" style={{ animationDelay: "0.5s" }}>
-          <SectionHeader title="Highlights" icon={<Video className="w-4 h-4" />} />
-          <VideoShowcase videos={videos} />
-        </section>
+          {/* Video Highlights */}
+          <section>
+            <SectionHeader title="Highlights" icon={<Video className="w-3.5 h-3.5" />} />
+            <VideoShowcase videos={videos} />
+          </section>
 
-        {/* Playing Journey */}
-        <section className="mt-10 animate-fade-in" style={{ animationDelay: "0.6s" }}>
-          <SectionHeader title="My Journey" icon={<MapPin className="w-4 h-4" />} />
-          <div className="glass rounded-xl p-4 border border-border/50">
+          {/* Playing Journey */}
+          <section>
+            <SectionHeader title="My Journey" icon={<MapPin className="w-3.5 h-3.5" />} />
             <PlayerJourney journey={journey} />
-          </div>
-        </section>
+          </section>
 
-        {/* Representation */}
-        <section className="mt-10 animate-fade-in" style={{ animationDelay: "0.7s" }}>
-          <SectionHeader title="Representation" icon={<Trophy className="w-4 h-4" />} />
-          <Representation agent={agent} />
-        </section>
+          {/* Representation */}
+          <section>
+            <SectionHeader title="Representation" icon={<Trophy className="w-3.5 h-3.5" />} />
+            <Representation agent={agent} />
+          </section>
 
-        {/* Partnerships */}
-        <section className="mt-10 animate-fade-in" style={{ animationDelay: "0.8s" }}>
-          <SectionHeader title="Partners" icon={<Handshake className="w-4 h-4" />} />
-          <Partnerships partners={partners} onAffiliateClick={handleAffiliateClick} />
-        </section>
+          {/* Partnerships */}
+          <section>
+            <SectionHeader title="Partners" icon={<Handshake className="w-3.5 h-3.5" />} />
+            <Partnerships partners={partners} onAffiliateClick={handleAffiliateClick} />
+          </section>
 
-        {/* Footer */}
-        <footer className="mt-12 pt-8 border-t border-border text-center">
-          <p className="text-sm text-muted-foreground">
-            Built with{" "}
-            <span className="text-primary font-semibold">PlayerLink</span>
-          </p>
-          <p className="text-xs text-muted-foreground/60 mt-1">
-            © 2025 Marcus Lindström. All rights reserved.
-          </p>
-        </footer>
+          {/* Footer */}
+          <footer className="pt-6 border-t border-border text-center pb-4">
+            <p className="text-xs text-muted-foreground">
+              Built with{" "}
+              <span className="text-primary font-bold">PlayerLink</span>
+            </p>
+            <p className="text-[10px] text-muted-foreground/50 mt-1">
+              © 2025 Marcus Lindström
+            </p>
+          </footer>
+        </div>
       </div>
     </div>
   );

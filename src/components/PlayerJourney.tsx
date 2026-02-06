@@ -11,36 +11,31 @@ interface PlayerJourneyProps {
 
 export const PlayerJourney = ({ journey }: PlayerJourneyProps) => {
   return (
-    <div className="relative">
-      {/* Timeline line */}
-      <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-border" />
-      
-      <div className="space-y-4">
-        {journey.map((item, index) => (
-          <div key={index} className="flex items-start gap-4">
-            {/* Timeline dot */}
-            <div className={`relative z-10 w-4 h-4 rounded-full border-2 ${
-              index === 0 
-                ? "bg-primary border-primary" 
-                : "bg-background border-muted-foreground/50"
-            }`} />
-            
-            {/* Content */}
-            <div className="flex-1 pb-2">
-              <div className="flex items-baseline gap-2">
-                <span className="text-sm font-semibold text-foreground">{item.team}</span>
-                <span className="text-xs text-muted-foreground">{item.year}</span>
-              </div>
-              <p className="text-sm text-muted-foreground">{item.league}</p>
-              {item.role && (
-                <span className="inline-block mt-1 text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary">
-                  {item.role}
-                </span>
-              )}
-            </div>
+    <div className="bg-card rounded-2xl border border-border shadow-sm overflow-hidden divide-y divide-border">
+      {journey.map((item, index) => (
+        <div key={index} className="flex items-center gap-4 px-5 py-3.5">
+          {/* Timeline indicator */}
+          <div className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${
+            index === 0 ? "bg-primary" : "bg-border"
+          }`} />
+          
+          {/* Content */}
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-bold text-foreground truncate">{item.team}</p>
+            <p className="text-xs text-muted-foreground">{item.league}</p>
           </div>
-        ))}
-      </div>
+
+          {/* Year + role */}
+          <div className="flex items-center gap-2 flex-shrink-0">
+            {item.role && (
+              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-primary/10 text-primary">
+                {item.role}
+              </span>
+            )}
+            <span className="text-xs font-medium text-muted-foreground">{item.year}</span>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
