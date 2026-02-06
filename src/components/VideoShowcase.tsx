@@ -1,13 +1,22 @@
-import { Play } from "lucide-react";
 
+interface VideoShowcaseProps {
+  url?: string;
+}
 
+export const VideoShowcase = ({ url }: VideoShowcaseProps) => {
+  if (!url) {
+    return (
+      <div className="bg-card rounded-2xl border border-border shadow-sm p-8 text-center text-muted-foreground">
+        No video added yet
+      </div>
+    );
+  }
 
-export const VideoShowcase = () => {
   return (
-    <div className="-mx-4 w-[calc(100%+2rem)]">
+    <div className="rounded-2xl overflow-hidden border border-border shadow-sm">
       <div className="relative w-full pb-[56.25%] bg-black">
         <iframe
-          src="https://player.vimeo.com/video/1083704020?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
+          src={url}
           width="100%"
           height="100%"
           frameBorder="0"
@@ -16,7 +25,6 @@ export const VideoShowcase = () => {
           className="absolute top-0 left-0 w-full h-full"
         />
       </div>
-
     </div>
   );
 };

@@ -16,6 +16,14 @@ interface UpcomingGamesProps {
 }
 
 export const UpcomingGames = ({ games }: UpcomingGamesProps) => {
+  if (!games || games.length === 0) {
+    return (
+      <div className="bg-card rounded-2xl border border-border shadow-sm p-6 text-center text-muted-foreground text-sm">
+        No upcoming games
+      </div>
+    );
+  }
+
   return (
     <div className="bg-card rounded-2xl border border-border shadow-sm overflow-hidden divide-y divide-border">
       {games.map((game, index) => (
