@@ -2,100 +2,98 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Hockey Player Brand - Dark Athletic Theme with Ice Accents */
+/* Hockey Player Brand - Light Theme with Deep Blue Accent */
 
 @layer base {
   :root {
-    /* Dark athletic base */
-    --background: 220 20% 6%;
-    --foreground: 210 20% 95%;
+    /* Light clean base */
+    --background: 210 20% 98%;
+    --foreground: 220 25% 12%;
 
     /* Cards and surfaces */
-    --card: 220 18% 10%;
-    --card-foreground: 210 20% 95%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 12%;
 
-    --popover: 220 18% 10%;
-    --popover-foreground: 210 20% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 12%;
 
-    /* Ice blue primary accent */
-    --primary: 195 100% 50%;
-    --primary-foreground: 220 20% 6%;
+    /* Deep navy blue primary */
+    --primary: 215 70% 28%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Steel secondary */
-    --secondary: 220 15% 18%;
-    --secondary-foreground: 210 20% 90%;
+    /* Soft blue-gray secondary */
+    --secondary: 215 25% 93%;
+    --secondary-foreground: 220 25% 20%;
 
-    /* Muted grays */
-    --muted: 220 15% 15%;
-    --muted-foreground: 215 15% 55%;
+    /* Muted */
+    --muted: 215 20% 94%;
+    --muted-foreground: 215 15% 50%;
 
-    /* Ice accent for highlights */
-    --accent: 195 80% 45%;
-    --accent-foreground: 220 20% 6%;
+    /* Accent - slightly brighter blue */
+    --accent: 215 60% 38%;
+    --accent-foreground: 0 0% 100%;
 
-    /* Alert red for live games */
+    /* Alert */
     --destructive: 0 72% 51%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    /* Borders and inputs */
-    --border: 220 15% 20%;
-    --input: 220 15% 18%;
-    --ring: 195 100% 50%;
+    /* Borders */
+    --border: 215 20% 88%;
+    --input: 215 20% 88%;
+    --ring: 215 70% 28%;
 
     --radius: 0.75rem;
 
-    /* Custom hockey theme tokens */
-    --ice-glow: 195 100% 60%;
-    --ice-gradient: linear-gradient(135deg, hsl(195 100% 50%) 0%, hsl(210 100% 60%) 100%);
-    --dark-gradient: linear-gradient(180deg, hsl(220 20% 8%) 0%, hsl(220 20% 4%) 100%);
-    --card-gradient: linear-gradient(145deg, hsl(220 18% 12%) 0%, hsl(220 18% 8%) 100%);
-    --glass-bg: hsla(220, 18%, 12%, 0.8);
-    --glass-border: hsla(210, 20%, 95%, 0.1);
+    /* Custom tokens */
+    --ice-glow: 215 70% 40%;
+    --ice-gradient: linear-gradient(135deg, hsl(215 70% 28%) 0%, hsl(215 55% 42%) 100%);
+    --dark-gradient: none;
+    --card-gradient: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(215 20% 97%) 100%);
+    --glass-bg: hsla(0, 0%, 100%, 0.85);
+    --glass-border: hsla(215, 25%, 12%, 0.08);
 
-    /* Shadows */
-    --shadow-glow: 0 0 30px hsla(195, 100%, 50%, 0.3);
-    --shadow-card: 0 4px 20px hsla(0, 0%, 0%, 0.4);
+    --shadow-glow: 0 0 30px hsla(215, 70%, 28%, 0.15);
+    --shadow-card: 0 4px 20px hsla(215, 30%, 20%, 0.08);
 
-    /* Sidebar (keep for compatibility) */
-    --sidebar-background: 220 18% 8%;
-    --sidebar-foreground: 210 20% 90%;
-    --sidebar-primary: 195 100% 50%;
-    --sidebar-primary-foreground: 220 20% 6%;
-    --sidebar-accent: 220 15% 15%;
-    --sidebar-accent-foreground: 210 20% 90%;
-    --sidebar-border: 220 15% 20%;
-    --sidebar-ring: 195 100% 50%;
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 25% 20%;
+    --sidebar-primary: 215 70% 28%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 25% 93%;
+    --sidebar-accent-foreground: 220 25% 20%;
+    --sidebar-border: 215 20% 88%;
+    --sidebar-ring: 215 70% 28%;
   }
 
   .dark {
-    /* Same as root - dark by default */
     --background: 220 20% 6%;
     --foreground: 210 20% 95%;
     --card: 220 18% 10%;
     --card-foreground: 210 20% 95%;
     --popover: 220 18% 10%;
     --popover-foreground: 210 20% 95%;
-    --primary: 195 100% 50%;
-    --primary-foreground: 220 20% 6%;
+    --primary: 215 70% 50%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 220 15% 18%;
     --secondary-foreground: 210 20% 90%;
     --muted: 220 15% 15%;
     --muted-foreground: 215 15% 55%;
-    --accent: 195 80% 45%;
-    --accent-foreground: 220 20% 6%;
+    --accent: 215 60% 45%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 210 40% 98%;
     --border: 220 15% 20%;
     --input: 220 15% 18%;
-    --ring: 195 100% 50%;
+    --ring: 215 70% 50%;
     --sidebar-background: 220 18% 8%;
     --sidebar-foreground: 210 20% 90%;
-    --sidebar-primary: 195 100% 50%;
-    --sidebar-primary-foreground: 220 20% 6%;
+    --sidebar-primary: 215 70% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 220 15% 15%;
     --sidebar-accent-foreground: 210 20% 90%;
     --sidebar-border: 220 15% 20%;
-    --sidebar-ring: 195 100% 50%;
+    --sidebar-ring: 215 70% 50%;
   }
 }
 
@@ -106,7 +104,6 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    background: var(--dark-gradient);
     min-height: 100vh;
   }
 }
@@ -143,10 +140,10 @@
 
   @keyframes pulse-glow {
     0%, 100% {
-      box-shadow: 0 0 20px hsla(195, 100%, 50%, 0.3);
+      box-shadow: 0 0 15px hsla(215, 70%, 28%, 0.15);
     }
     50% {
-      box-shadow: 0 0 40px hsla(195, 100%, 50%, 0.5);
+      box-shadow: 0 0 30px hsla(215, 70%, 28%, 0.25);
     }
   }
 
@@ -169,6 +166,6 @@
 
   .link-card-hover:hover {
     @apply -translate-y-1;
-    box-shadow: 0 8px 30px hsla(195, 100%, 50%, 0.2);
+    box-shadow: 0 8px 30px hsla(215, 70%, 28%, 0.12);
   }
 }
