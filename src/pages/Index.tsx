@@ -170,10 +170,10 @@ const Index = () => {
           <footer className="pt-6 border-t border-border text-center pb-4">
             <p className="text-xs text-muted-foreground">
               Built with{" "}
-              <span className="text-primary font-bold">PlayerLink</span>
+              <span className="text-primary font-bold">MyHockeyBio</span>
             </p>
             <p className="text-[10px] text-muted-foreground/50 mt-1">
-              © 2025 Marcus Lindström
+              © 2025 Rider McCallum
             </p>
           </footer>
         </div>
