@@ -12,6 +12,9 @@ interface PlayerHeaderProps {
   age: number;
   height: string;
   weight: string;
+  shoots: string;
+  flag?: string;
+  dob?: string;
 }
 
 export const PlayerHeader = ({
@@ -24,6 +27,9 @@ export const PlayerHeader = ({
   age,
   height,
   weight,
+  shoots,
+  flag,
+  dob,
 }: PlayerHeaderProps) => {
   return (
     <header className="relative flex flex-col items-center">
@@ -44,11 +50,18 @@ export const PlayerHeader = ({
               <h1 className="text-3xl font-extrabold tracking-tight text-foreground leading-tight">
                 {name}
               </h1>
-              <p className="text-base font-semibold text-foreground/70 mt-0.5">
-                {position}
-              </p>
+              <div className="flex items-center gap-4 mt-2">
+                {flag && (
+                  <div className="w-8 h-8 rounded-full overflow-hidden border border-border/50 shadow-sm relative shrink-0">
+                    <img src={flag} alt={nationality} className="w-full h-full object-cover" />
+                  </div>
+                )}
+                <p className="text-lg font-medium text-foreground/80 tracking-tight">
+                  {position} <span className="mx-2 opacity-50">•</span> {dob}
+                </p>
+              </div>
             </div>
-            <span className="text-5xl font-black text-foreground/30 leading-none">
+            <span className="text-5xl font-black text-foreground/60 leading-none">
               {number}
             </span>
           </div>
@@ -56,7 +69,7 @@ export const PlayerHeader = ({
       </div>
 
       {/* Info bar below image */}
-      <div className="w-full mt-4 space-y-3 px-1">
+      <div className="w-full mt-4 space-y-3 px-4">
         {/* Team & League */}
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2.5 flex-1 bg-card rounded-xl border border-border px-4 py-2.5 shadow-sm">
@@ -76,9 +89,10 @@ export const PlayerHeader = ({
         </div>
 
         {/* Player details grid */}
+        {/* Player details grid */}
         <div className="grid grid-cols-4 bg-card rounded-xl border border-border shadow-sm overflow-hidden">
           {[
-            { label: "Nation", value: nationality === "Canada" ? "🇨🇦 CAN" : nationality === "USA" ? "🇺🇸 USA" : nationality },
+            { label: "Nation", value: nationality === "Canada" ? "CAN" : nationality === "USA" ? "USA" : nationality },
             { label: "Age", value: `${age}` },
             { label: "Height", value: height },
             { label: "Weight", value: weight },

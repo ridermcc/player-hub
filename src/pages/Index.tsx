@@ -7,66 +7,96 @@ import { UpcomingGames } from "@/components/UpcomingGames";
 import { VideoShowcase } from "@/components/VideoShowcase";
 import { Partnerships } from "@/components/Partnerships";
 import { Representation } from "@/components/Representation";
-import { 
+import {
   BarChart3,
   Trophy,
   Calendar,
   Video,
   Handshake,
-  MapPin
+  MapPin,
+  Link
 } from "lucide-react";
 
 // Mock data for the example player
 const playerData = {
-  name: "Marcus Lindström",
-  number: "17",
-  position: "Center",
-  team: "London Knights",
-  league: "OHL",
+  name: "Rider McCallum",
+  number: "16", // Using #16 as requested
+  position: "D", // Changed to D
+  team: "Plymouth State Univ.",
+  league: "NCAA III",
   nationality: "Canada",
-  age: 18,
-  height: "6'1\"",
-  weight: "185 lbs",
+  flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/330px-Flag_of_Canada_%28Pantone%29.svg.png",
+  shoots: "Left",
+  dob: "2001",
+  age: 24,
+  height: "6'0\"",
+  weight: "175 lbs",
 };
 
 const currentStats = {
-  gamesPlayed: 42,
-  goals: 28,
-  assists: 35,
-  points: 63,
-  plusMinus: "+24",
-  pim: 18,
+  gamesPlayed: 18,
+  goals: 1,
+  assists: 10,
+  points: 11,
+  plusMinus: "-4",
+  pim: 21,
 };
 
 const journey = [
-  { year: "2024-25", team: "London Knights", league: "OHL", role: "Alternate Captain" },
-  { year: "2023-24", team: "London Knights", league: "OHL" },
-  { year: "2022-23", team: "Elgin-Middlesex Chiefs", league: "ALLIANCE U18" },
-  { year: "2021-22", team: "Toronto Jr. Canadiens", league: "GTHL U16" },
+  {
+    year: "2018-2020",
+    team: "Revelstoke Grizzlies",
+    league: "KIJHL",
+    role: "2 Seasons",
+    logo: "https://www.revelstokegrizzlies.com/wp-content/uploads/sites/19/2020/10/grizzlies_512.png"
+  },
+  {
+    year: "2020-2022",
+    team: "Fort McMurray Oil Barons",
+    league: "AJHL",
+    role: "2 Seasons",
+    logo: "https://files.eliteprospects.com/layout/logos/a3f6f86f-2c9c-4962-8ae9-715e18739940_large.png"
+  },
+  {
+    year: "2022-2026",
+    team: "Plymouth State Univ.",
+    league: "NCAA III",
+    role: "4 Seasons",
+    logo: "https://myhockeybio.com/wp-content/uploads/2025/02/PSU-Logo-Full-.png"
+  },
 ];
 
 const upcomingGames = [
-  { date: "Feb 7", time: "7:00 PM", opponent: "Oshawa Generals", location: "Budweiser Gardens", isHome: true },
-  { date: "Feb 9", time: "2:00 PM", opponent: "Erie Otters", location: "Erie Insurance Arena", isHome: false },
-  { date: "Feb 14", time: "7:30 PM", opponent: "Windsor Spitfires", location: "Budweiser Gardens", isHome: true },
+  {
+    date: "Feb 7",
+    time: "7:00 PM",
+    opponent: "UMass Boston",
+    location: "Hanaway Rink",
+    isHome: true,
+    logo: "https://athletics.plymouth.edu/images/logos/UMASS_Boston.png",
+    watchLink: "https://mascac.tv",
+  },
+  {
+    date: "Feb 9",
+    time: "2:00 PM",
+    opponent: "UMass Dartmouth",
+    location: "Hetland Arena",
+    isHome: false,
+    logo: "https://athletics.plymouth.edu/images/logos/UMASS_Dartmouth.png",
+    watchLink: "https://mascac.tv",
+  },
+  {
+    date: "Feb 14",
+    time: "7:30 PM",
+    opponent: "New England College",
+    location: "Hanaway Rink",
+    isHome: true,
+    logo: "https://athletics.plymouth.edu/images/logos/nec_200x200.png",
+    watchLink: "https://mascac.tv",
+  },
 ];
 
-const videos = [
-  {
-    id: "1",
-    title: "Hat Trick vs Kitchener Rangers - All Goals",
-    thumbnail: "https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?w=200&h=150&fit=crop",
-    duration: "2:34",
-    url: "https://youtube.com",
-  },
-  {
-    id: "2",
-    title: "Top 10 Plays of the Season So Far",
-    thumbnail: "https://images.unsplash.com/photo-1515703407324-5f753afd8be8?w=200&h=150&fit=crop",
-    duration: "4:12",
-    url: "https://youtube.com",
-  },
-];
+
 
 const partners = [
   { id: "1", name: "Bauer Hockey", logo: "", url: "https://bauer.com", promoCode: "MARCUS17", discount: "15% OFF" },
@@ -96,26 +126,26 @@ const Index = () => {
         <div className="px-4 space-y-8 mt-6">
           {/* Social & Hockey Profiles */}
           <section>
-            <SectionHeader title="Connect" />
+            <SectionHeader title="Connect" icon={<Link className="w-3.5 h-3.5" />} />
             <SocialBar />
           </section>
 
           {/* Season Stats */}
           <section>
             <SectionHeader title="Season Stats" icon={<BarChart3 className="w-3.5 h-3.5" />} />
-            <StatsCard stats={currentStats} season="2024-25 OHL" />
+            <StatsCard stats={currentStats} season="2025-26" league="NCAA III" />
+          </section>
+
+          {/* Video Highlights */}
+          <section>
+            <SectionHeader title="Highlights" icon={<Video className="w-3.5 h-3.5" />} />
+            <VideoShowcase />
           </section>
 
           {/* Upcoming Games */}
           <section>
             <SectionHeader title="Upcoming Games" icon={<Calendar className="w-3.5 h-3.5" />} />
             <UpcomingGames games={upcomingGames} />
-          </section>
-
-          {/* Video Highlights */}
-          <section>
-            <SectionHeader title="Highlights" icon={<Video className="w-3.5 h-3.5" />} />
-            <VideoShowcase videos={videos} />
           </section>
 
           {/* Playing Journey */}

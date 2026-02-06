@@ -8,9 +8,10 @@ interface StatsCardProps {
     pim: number;
   };
   season: string;
+  league?: string;
 }
 
-export const StatsCard = ({ stats, season }: StatsCardProps) => {
+export const StatsCard = ({ stats, season, league }: StatsCardProps) => {
   const statItems = [
     { label: "GP", value: stats.gamesPlayed },
     { label: "G", value: stats.goals },
@@ -24,9 +25,11 @@ export const StatsCard = ({ stats, season }: StatsCardProps) => {
     <div className="bg-card rounded-2xl border border-border shadow-sm overflow-hidden">
       <div className="flex items-center justify-between px-5 py-3 border-b border-border">
         <span className="text-sm font-semibold text-foreground">{season}</span>
-        <span className="text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-full bg-primary/10 text-primary">
-          Current Season
-        </span>
+        {league && (
+          <span className="text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-full bg-primary/10 text-primary">
+            {league}
+          </span>
+        )}
       </div>
       <div className="grid grid-cols-6 divide-x divide-border">
         {statItems.map((stat) => (

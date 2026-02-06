@@ -1,4 +1,4 @@
-import { Calendar, MapPin, Clock } from "lucide-react";
+import { Calendar, MapPin, Clock, Tv } from "lucide-react";
 
 interface Game {
   date: string;
@@ -7,6 +7,8 @@ interface Game {
   location: string;
   isHome: boolean;
   isLive?: boolean;
+  logo?: string;
+  watchLink?: string;
 }
 
 interface UpcomingGamesProps {
@@ -24,20 +26,36 @@ export const UpcomingGames = ({ games }: UpcomingGamesProps) => {
               <span className="text-[10px] font-bold text-destructive uppercase tracking-wider">Live Now</span>
             </div>
           )}
-          
-          <div className="flex items-center justify-between mb-2">
-            <span className="font-bold text-foreground">
-              {game.isHome ? "vs" : "@"} {game.opponent}
-            </span>
-            <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${
-              game.isHome 
-                ? "bg-primary/10 text-primary" 
-                : "bg-secondary text-muted-foreground"
-            }`}>
-              {game.isHome ? "HOME" : "AWAY"}
-            </span>
+
+          <div className="flex items-start justify-between mb-2">
+            <div className="flex items-center gap-3">
+              {game.logo && (
+                <img
+                  src={game.logo}
+                  alt={game.opponent}
+                  className="w-10 h-10 object-contain"
+                />
+              )}
+              <div>
+                <span className="font-bold text-foreground block leading-tight">
+                  {game.isHome ? "vs" : "@"} {game.opponent}
+                </span>
+              </div>
+            </div>
+
+            {game.watchLink && (
+              <a
+                href={game.watchLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-secondary hover:bg-secondary/80 text-foreground transition-colors group/watch"
+              >
+                <Tv className="w-3.5 h-3.5 text-muted-foreground group-hover/watch:text-primary transition-colors" />
+                <span className="text-xs font-semibold">Watch</span>
+              </a>
+            )}
           </div>
-          
+
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <span className="flex items-center gap-1.5">
               <Calendar className="w-3.5 h-3.5" />
@@ -53,7 +71,8 @@ export const UpcomingGames = ({ games }: UpcomingGamesProps) => {
             </span>
           </div>
         </div>
-      ))}
-    </div>
+      ))
+      }
+    </div >
   );
 };
