@@ -4,11 +4,24 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 // Types
 export interface Block {
   id: string;
-  type: 'link' | 'header' | 'social';
+  type: 'link' | 'header' | 'social' | 'stats' | 'video' | 'games' | 'partnerships';
   title: string;
   url?: string;
   icon?: string;
   isVisible: boolean;
+  // Specific data for rich blocks
+  stats?: {
+    games: number;
+    goals: number;
+    assists: number;
+    points: number;
+  };
+  video?: {
+    youtubeUrl: string;
+    thumbnailUrl?: string; // Optional custom thumbnail
+  };
+  games?: any[]; // For MVP we might just use static data in the component, but structure allows expansion
+  partnerships?: any[];
 }
 
 export interface UserProfile {
@@ -16,13 +29,24 @@ export interface UserProfile {
   displayName: string;
   bio: string;
   avatarUrl?: string;
+  // Hockey specific fields
+  position?: string;
+  team?: string;
+  league?: string;
+  number?: string;
+  nationality?: string;
+  height?: string;
+  weight?: string;
+  age?: number;
+  shoots?: string;
+
   theme: 'light' | 'dark' | 'custom';
   blocks: Block[];
 }
 
 interface User {
   username: string;
-  password?: string; // storing plain text for mock MVP only
+  password?: string;
 }
 
 interface AuthContextType {
@@ -41,9 +65,61 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const STORAGE_KEY_USERS = 'linktree_mvp_users';
-const STORAGE_KEY_PROFILES = 'linktree_mvp_profiles';
-const STORAGE_KEY_CURRENT_USER = 'linktree_mvp_current_user';
+const STORAGE_KEY_USERS = 'myhockeybio_users';
+const STORAGE_KEY_PROFILES = 'myhockeybio_profiles';
+const STORAGE_KEY_CURRENT_USER = 'myhockeybio_current_user';
+
+// Pre-seeded data for 'ridermccallum'
+const SEED_PROFILE: UserProfile = {
+  username: 'ridermccallum',
+  displayName: 'Rider McCallum',
+  bio: 'Professional Hockey Player',
+  avatarUrl: '/player-hub/player-photo.jpg', // Assuming this asset exists or will need to
+  position: 'Defense',
+  team: 'Steelheads',
+  league: 'OHL',
+  number: '14',
+  nationality: 'Canada',
+  height: "6'0\"",
+  weight: '185 lbs',
+  age: 19,
+  shoots: 'L',
+  theme: 'dark',
+  blocks: [
+    {
+      id: 'stats-1',
+      type: 'stats',
+      title: 'Current Season Stats',
+      isVisible: true,
+      stats: { games: 45, goals: 12, assists: 28, points: 40 }
+    },
+    {
+      id: 'video-1',
+      type: 'video',
+      title: '2024-25 Season Highlights',
+      isVisible: true,
+      video: { youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' } // Placeholder
+    },
+    {
+      id: 'games-1',
+      type: 'games',
+      title: 'Upcoming Games',
+      isVisible: true
+    },
+    {
+      id: 'partnerships-1',
+      type: 'partnerships',
+      title: 'Partnerships',
+      isVisible: true
+    },
+    {
+      id: 'social-1',
+      type: 'social',
+      title: 'Social Media',
+      isVisible: true
+    }
+  ]
+};
 
 export const MockAuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -53,8 +129,17 @@ export const MockAuthProvider = ({ children }: { children: ReactNode }) => {
   // Load initial data
   useEffect(() => {
     const loadedUsers = JSON.parse(localStorage.getItem(STORAGE_KEY_USERS) || '[]');
-    const loadedProfiles = JSON.parse(localStorage.getItem(STORAGE_KEY_PROFILES) || '{}');
+    let loadedProfiles = JSON.parse(localStorage.getItem(STORAGE_KEY_PROFILES) || '{}');
     const loadedCurrentUser = JSON.parse(localStorage.getItem(STORAGE_KEY_CURRENT_USER) || 'null');
+
+    // Seed ridermccallum if not exists
+    if (!loadedProfiles['ridermccallum']) {
+      loadedProfiles['ridermccallum'] = SEED_PROFILE;
+      // Ensure user exists too
+      if (!loadedUsers.find((u: User) => u.username === 'ridermccallum')) {
+        loadedUsers.push({ username: 'ridermccallum' });
+      }
+    }
 
     setUsers(loadedUsers);
     setProfiles(loadedProfiles);
@@ -65,11 +150,11 @@ export const MockAuthProvider = ({ children }: { children: ReactNode }) => {
 
   // Persist data
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(users));
+    if (users.length > 0) localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(users));
   }, [users]);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY_PROFILES, JSON.stringify(profiles));
+    if (Object.keys(profiles).length > 0) localStorage.setItem(STORAGE_KEY_PROFILES, JSON.stringify(profiles));
   }, [profiles]);
 
   useEffect(() => {
@@ -94,9 +179,14 @@ export const MockAuthProvider = ({ children }: { children: ReactNode }) => {
     const newProfile: UserProfile = {
       username,
       displayName: username,
-      bio: 'Welcome to my page!',
+      bio: 'Welcome to MyHockeyBio!',
       theme: 'dark',
       blocks: [],
+      // Default hockey placeholders
+      position: 'Forward',
+      team: 'Free Agent',
+      league: 'League',
+      number: '99',
     };
 
     setUsers([...users, newUser]);
