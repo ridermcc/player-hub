@@ -31,6 +31,7 @@ const playerData = {
   age: 24,
   height: "6'0\"",
   weight: "175 lbs",
+  playerImage: "/player-hub/player-photo.jpg",
 };
 
 const currentStats = {

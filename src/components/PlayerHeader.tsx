@@ -61,9 +61,12 @@ export const PlayerHeader = ({
       {/* Hero image — full width, tall */}
       <div className="relative w-full aspect-[3/4] max-h-[420px] rounded-b-3xl overflow-hidden bg-muted">
         <img
-          src={playerImage || playerPhoto}
+          src={playerImage || (editable ? "https://myhockeybio.com/wp-content/uploads/2025/03/placeholder-player-cutout.png" : playerPhoto)}
           alt={name}
-          className="w-full h-full object-cover object-top"
+          className={cn(
+            "w-full h-full object-cover object-top",
+            !playerImage && editable && "opacity-50 scale-90 object-contain translate-y-10"
+          )}
         />
 
         {/* Image Upload Overlay */}
@@ -78,11 +81,15 @@ export const PlayerHeader = ({
             />
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover/header:opacity-100 transition-opacity cursor-pointer z-10"
+              className={cn(
+                "absolute inset-0 flex items-center justify-center transition-opacity cursor-pointer z-10",
+                // Show consistently if no image, otherwise hover
+                !playerImage ? "opacity-100 bg-transparent" : "opacity-0 group-hover/header:opacity-100 bg-black/30"
+              )}
             >
               <div className="bg-background/90 text-foreground px-4 py-2 rounded-full flex items-center gap-2 font-medium shadow-lg hover:bg-background transition-colors">
                 <Camera className="w-4 h-4" />
-                <span>Change Photo</span>
+                <span>{playerImage ? "Change Photo" : "Add Photo"}</span>
               </div>
             </button>
           </>
