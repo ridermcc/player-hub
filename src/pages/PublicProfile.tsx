@@ -24,17 +24,20 @@ const PublicProfile = () => {
       <div className="max-w-md mx-auto min-h-screen">
         <ProfileRenderer profile={profile} editable={false} />
       </div>
-      {/* Subtle footer */}
-      <div className="fixed bottom-0 left-0 right-0 bg-background/90 backdrop-blur-md border-t border-border z-50">
-        <div className="max-w-md mx-auto flex items-center justify-between px-4 py-3">
-          <p className="text-sm text-muted-foreground">
-            Built with <span className="font-bold text-primary">MyHockeyBio</span>
-          </p>
-          <Link to="/signup" className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors">
-            Create yours →
-          </Link>
-        </div>
-      </div>
+      {/* Floating CTA Footer */}
+      <Link
+        to="/signup"
+        className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 max-w-md w-[calc(100%-2rem)] flex items-center justify-between px-4 py-2 rounded-full bg-blue-600/20 backdrop-blur-xl border border-blue-400/30 shadow-lg shadow-blue-500/10 hover:bg-blue-600/30 hover:border-blue-400/50 transition-all duration-300 cursor-pointer group"
+      >
+        <img
+          src="https://myhockeybio.com/wp-content/uploads/2025/03/MHB-Logo-white.png"
+          alt="MyHockeyBio"
+          className="h-5"
+        />
+        <span className="text-xs font-medium text-blue-100/90 group-hover:text-white transition-colors">
+          Create yours →
+        </span>
+      </Link>
     </div>
   );
 };
