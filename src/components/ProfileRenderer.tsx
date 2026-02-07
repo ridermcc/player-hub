@@ -142,7 +142,7 @@ export const ProfileRenderer = ({
   };
 
   return (
-    <div className="w-full max-w-md mx-auto pb-20">
+    <div className="w-full max-w-md mx-auto pb-8">
       <PlayerHeader
         name={profile.displayName}
         number={profile.number || ''}
@@ -161,7 +161,7 @@ export const ProfileRenderer = ({
         onUpdate={(updates) => onUpdateProfile && onUpdateProfile(updates)}
       />
 
-      <div className="px-4 space-y-8 mt-6">
+      <div className="px-4 space-y-6 mt-6">
         {profile.blocks.length === 0 && (
           <div className="text-center py-10 text-muted-foreground border-2 border-dashed rounded-xl">
             {editable ? "Add your first content block below!" : "No content yet."}

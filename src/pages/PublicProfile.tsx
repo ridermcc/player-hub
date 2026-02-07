@@ -27,7 +27,7 @@ const PublicProfile = () => {
       {/* Floating CTA Footer */}
       <Link
         to="/signup"
-        className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 max-w-md w-[calc(100%-2rem)] flex items-center justify-between px-4 py-2 rounded-full bg-blue-600/20 backdrop-blur-xl border border-blue-400/30 shadow-lg shadow-blue-500/10 hover:bg-blue-600/30 hover:border-blue-400/50 transition-all duration-300 cursor-pointer group"
+        className="fixed bottom-2 left-1/2 -translate-x-1/2 z-50 max-w-lg w-[calc(100%-1rem)] flex items-center justify-between px-4 py-2 rounded-full bg-blue-600/20 backdrop-blur-xl border border-blue-400/30 shadow-lg shadow-blue-500/10 hover:bg-blue-600/30 hover:border-blue-400/50 transition-all duration-300 cursor-pointer group"
       >
         <img
           src="https://myhockeybio.com/wp-content/uploads/2025/03/MHB-Logo-white.png"
