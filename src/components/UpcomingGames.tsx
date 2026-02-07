@@ -1,4 +1,12 @@
-import { Calendar, MapPin, Clock, Tv } from "lucide-react";
+import { Calendar, MapPin, Clock, Tv, CalendarPlus, ChevronDown } from "lucide-react";
+import { downloadICS, getGoogleCalendarLink } from "@/lib/calendar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "./ui/button";
 
 interface Game {
   date: string;
@@ -13,9 +21,10 @@ interface Game {
 
 interface UpcomingGamesProps {
   games: Game[];
+  playerName?: string;
 }
 
-export const UpcomingGames = ({ games }: UpcomingGamesProps) => {
+export const UpcomingGames = ({ games, playerName }: UpcomingGamesProps) => {
   if (!games || games.length === 0) {
     return (
       <div className="bg-card rounded-2xl border border-border shadow-sm p-6 text-center text-muted-foreground text-sm">
@@ -23,6 +32,14 @@ export const UpcomingGames = ({ games }: UpcomingGamesProps) => {
       </div>
     );
   }
+
+  const handleDownloadICS = (game: Game) => {
+    downloadICS({ ...game, playerName });
+  };
+
+  const handleGoogleCalendar = (game: Game) => {
+    window.open(getGoogleCalendarLink({ ...game, playerName }), '_blank');
+  };
 
   return (
     <div className="bg-card rounded-2xl border border-border shadow-sm overflow-hidden divide-y divide-border">
@@ -51,17 +68,44 @@ export const UpcomingGames = ({ games }: UpcomingGamesProps) => {
               </div>
             </div>
 
-            {game.watchLink && (
-              <a
-                href={game.watchLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-secondary hover:bg-secondary/80 text-foreground transition-colors group/watch"
-              >
-                <Tv className="w-3.5 h-3.5 text-muted-foreground group-hover/watch:text-primary transition-colors" />
-                <span className="text-xs font-semibold">Watch</span>
-              </a>
-            )}
+            <div className="flex items-center gap-2">
+              {/* Add to Calendar Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-8 px-2 text-muted-foreground hover:text-primary"
+                  >
+                    <CalendarPlus className="w-4 h-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem onClick={() => handleDownloadICS(game)}>
+                    <Calendar className="w-4 h-4 mr-2" />
+                    Download .ics
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => handleGoogleCalendar(game)}>
+                    <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18.316 5.684H24v12.632h-5.684V5.684zM5.684 24h12.632v-5.684H5.684V24zM0 5.684v12.632h5.684V5.684H0zM5.684 0v5.684h12.632V0H5.684z" />
+                    </svg>
+                    Google Calendar
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              {game.watchLink && (
+                <a
+                  href={game.watchLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-secondary hover:bg-secondary/80 text-foreground transition-colors group/watch"
+                >
+                  <Tv className="w-3.5 h-3.5 text-muted-foreground group-hover/watch:text-primary transition-colors" />
+                  <span className="text-xs font-semibold">Watch</span>
+                </a>
+              )}
+            </div>
           </div>
 
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
@@ -79,8 +123,7 @@ export const UpcomingGames = ({ games }: UpcomingGamesProps) => {
             </span>
           </div>
         </div>
-      ))
-      }
-    </div >
+      ))}
+    </div>
   );
 };

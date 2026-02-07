@@ -82,7 +82,7 @@ export const ProfileRenderer = ({
           return (
             <section>
               <SectionHeader title={block.title || 'Upcoming Games'} icon={SECTION_ICONS.games} />
-              <UpcomingGames games={block.gamesList || []} />
+              <UpcomingGames games={block.gamesList || []} playerName={profile.displayName} />
             </section>
           );
         case 'journey':

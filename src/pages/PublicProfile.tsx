@@ -3,6 +3,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useAuth } from '@/context/MockAuthContext';
 import { ProfileRenderer } from '@/components/ProfileRenderer';
+import { ShareButton } from '@/components/ShareButton';
 
 const PublicProfile = () => {
   const { username } = useParams();
@@ -21,6 +22,14 @@ const PublicProfile = () => {
 
   return (
     <div className="min-h-screen bg-background pb-16">
+      {/* Share Button - Top Right */}
+      <div className="fixed top-3 right-3 z-50">
+        <ShareButton
+          playerName={profile.displayName}
+          username={profile.username}
+        />
+      </div>
+
       <div className="max-w-md mx-auto min-h-screen">
         <ProfileRenderer profile={profile} editable={false} />
       </div>
@@ -43,3 +52,4 @@ const PublicProfile = () => {
 };
 
 export default PublicProfile;
+

@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/context/MockAuthContext';
 import { ProfileRenderer } from '@/components/ProfileRenderer';
+import { ShareButton } from '@/components/ShareButton';
 
 const LandingPage = () => {
   const { getProfile } = useAuth();
@@ -14,6 +15,14 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen bg-background pb-16">
+      {/* Share Button - Top Right */}
+      <div className="fixed top-3 right-3 z-50">
+        <ShareButton
+          playerName={riderProfile.displayName}
+          username={riderProfile.username}
+        />
+      </div>
+
       <div className="max-w-md mx-auto min-h-screen bg-background relative z-0">
         <ProfileRenderer profile={riderProfile} editable={false} />
 
@@ -44,3 +53,4 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
+
